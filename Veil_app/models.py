@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 from django.utils import timezone
+import datetime
 # Create your models here.
 # class Profile(models.Model):
 #     pass
@@ -80,7 +81,11 @@ class Usage_limit(models.Model):
     last_reset = models.DateField(default=timezone.now)
 
     def reset_if_needed(self):
-        if timezone.now().date() > self.last_reset:
+        last_reset_date = self.last_reset
+        if isinstance(last_reset_date, datetime.datetime):
+            last_reset_date = last_reset_date.date()
+            
+        if timezone.now().date() > last_reset_date:
             self.specific_gender_matches=0
             self.last_reset=timezone.now().date()
             self.save()

@@ -48,15 +48,17 @@ class MatchRequestSerializer(serializers.Serializer):
         choices=["male", "female", "any"]
     )
 
-class ReportSerializer(serializers.ModelSerializer):
+class ReportSerializer(serializers.ModelSerializer):    
+    device_id=serializers.UUIDField(write_only=True)
+    session_id=serializers.UUIDField(required=False,write_only=True)
 
     class Meta:
         model=Report
-        fields=['reported','reason']
+        fields=['reported','reason','device_id','session_id']
 
-    def validate(self,value):
+    def validate_reason(self,value):
         if len(value)<5:
-            raise serializers.ValidationError("Too Short")
+            raise serializers.ValidationError("Reason must be at least 5 charecters")
         return value
 
 class UsageStatusSerializer(serializers.Serializer):
