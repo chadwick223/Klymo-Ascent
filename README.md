@@ -4,7 +4,7 @@ Veil is an anonymous matchmaking and chat platform focused on privacy, simplicit
 communication.
 
 TECH STACK : Backend: Django, Django REST Framework, Redis, SQLite (development),
-Server-Sent Events (SSE), HTTPS. Frontend: React (Vite), EventSource (SSE). for mvp
+Server-Sent Events (SSE),Websockets, HTTPS. Frontend: React (Vite), EventSource (SSE). for mvp
 
 Core Concepts: Users are represented by devices, not accounts. Every action is tied to a device
 identity. Matchmaking pairs two devices and creates a unique chat session. Each chat session is
